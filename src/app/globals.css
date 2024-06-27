@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 h1 {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--font-bebas-neue), sans-serif;
   text-transform: uppercase;
+}
+
+.byline {
+  color: rgb(53, 48, 48);
 }

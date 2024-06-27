@@ -4,6 +4,7 @@ import { client, sanityFetch } from "@/sanity/client";
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { HeartFilledIcon } from '@sanity/icons'
 
 const PAINTINGS_QUERY = `*[_type == "painting"]{
   _id,
@@ -24,9 +25,10 @@ export default async function IndexPage() {
 
   return (
     <main className="flex bg-gray-100 min-h-screen flex-col p-24 gap-12">
-      <h1 className="text-6xl text-center tracking-tighter">
+      <h1 className="font-bebas-neue text-6xl text-center ">
         Gallery
       </h1>
+      <h2 className="byline text-4xl text-center tracking-tighter">Artwork by Minae Lee</h2>
       <ul className="grid grid-cols-1 gap-12 lg:grid-cols-3">
         {paintings.map((painting) => (
           <li
@@ -46,11 +48,12 @@ export default async function IndexPage() {
                   style={{objectFit: "cover"}}
                 />
               )}
-              <h2 className="text-xl text-center font-semibold">{painting?.title}</h2>
+              <h2 className="text-xl text-center">{painting?.title}</h2>
             </Link>
           </li>
         ))}
       </ul>
+      <p className="text-center flex items-center justify-center">Created with <HeartFilledIcon className="text-red-300 hover:text-red-500 text-2xl" /> & <a href="https://www.sanity.io/">Sanity.io</a> / <a href="https://nextjs.org/">Next.js</a></p>
     </main>
   );
 }
