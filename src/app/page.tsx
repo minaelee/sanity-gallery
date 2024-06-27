@@ -53,7 +53,11 @@ export default async function IndexPage() {
           </li>
         ))}
       </ul>
-      <p className="text-center flex items-center justify-center">Created with <HeartFilledIcon className="text-red-300 hover:text-red-500 text-2xl" /> & <a href="https://www.sanity.io/">Sanity.io</a> / <a href="https://nextjs.org/">Next.js</a></p>
+      <div>
+        <p className="text-center flex items-center justify-center">Created in 2024 with <HeartFilledIcon className="text-red-300 hover:text-red-500 text-2xl" /> by Minae Lee</p>
+        <p className="text-center">
+          Thanks to <a className="hover:text-red-500" href="https://www.sanity.io/">Sanity.io</a> & <a className="hover:text-red-500" href="https://nextjs.org/">Next.js</a></p>
+      </div>
     </main>
   );
 }
