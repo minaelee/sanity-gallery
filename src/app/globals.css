@@ -10,3 +10,16 @@ h1 {
 .byline {
   color: rgb(53, 48, 48);
 }
+
+p {
+  font-size: 1.2rem;
+}
+
+p.blockText a {
+  text-decoration: underline;
+}
+
+a:hover {
+  color: rgb(95, 165, 188);
+  text-decoration: none;
+}

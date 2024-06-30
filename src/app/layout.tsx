@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue } from "next/font/google";
+import { Inter, Bebas_Neue, EB_Garamond } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  weight: "400",
+});
+
 const bebasNeue = Bebas_Neue({ 
   subsets: ["latin"], 
   weight: "400",
@@ -21,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${bebasNeue.variable}`}>
+      <body className={`${ebGaramond.className} ${bebasNeue.variable}`}>
         {children}
       </body>
     </html>

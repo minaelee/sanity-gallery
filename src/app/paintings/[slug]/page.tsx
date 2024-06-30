@@ -1,6 +1,6 @@
+// import {PortableText} from '@portabletext/react'
 import { PortableText, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "@/sanity/client";
 import Link from "next/link";
@@ -13,7 +13,8 @@ const PAINTING_QUERY = `*[
   title,
   slug,
   image,
-  year
+  year,
+  description,
 }`;
 
 const { projectId, dataset } = client.config();
@@ -21,6 +22,17 @@ const urlFor = (source: SanityImageSource) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
+
+const customComponents = {
+  block: {
+    normal: ({ children }: any) => {
+      if (children.length === 1 && children[0] === '') {
+        return <br />;  // This adds a blank line
+      }
+      return <p className="blockText">{children}</p>;
+    },
+  },
+};
 
 export default async function PaintingPage({
   params,
@@ -32,7 +44,7 @@ export default async function PaintingPage({
     params,
   });
 
-  const { title, image, year } = painting;
+  const { title, image, year, description } = painting;
   const paintingImageUrl = image
     ? urlFor(image)?.width(800).height(800).url()
     : null;
@@ -53,7 +65,7 @@ export default async function PaintingPage({
         <div className="flex flex-col justify-center space-y-4">
           <div className="space-y-4">
             {title ? (
-              <h1 className="text-4xl font-bold tracking-tighter mb-8">
+              <h1 className="text-4xl mb-8">
                 {title}
               </h1>
             ) : null}
@@ -63,6 +75,9 @@ export default async function PaintingPage({
                 <dt>{year}</dt>
               </dl>
             ) : null}
+          </div>
+          <div>
+            <PortableText value={description} components={customComponents} />
           </div>
         </div>
       </div>

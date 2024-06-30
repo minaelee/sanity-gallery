@@ -28,7 +28,7 @@ export default async function IndexPage() {
       <h1 className="font-bebas-neue text-6xl text-center ">
         Gallery
       </h1>
-      <h2 className="byline text-4xl text-center tracking-tighter">Artwork by Minae Lee</h2>
+      <h2 className="byline text-4xl text-center">Artwork by <a href="https://minaelee.com">Minae Lee</a></h2>
       <ul className="grid grid-cols-1 gap-12 lg:grid-cols-3">
         {paintings.map((painting) => (
           <li
@@ -36,7 +36,7 @@ export default async function IndexPage() {
             key={painting._id}
           >
             <Link
-              className="hover:underline flex flex-col items-center"
+              className="flex flex-col items-center"
               href={`/paintings/${painting.slug.current}`}
             >
               {painting.thumbnailUrl && (
@@ -48,13 +48,13 @@ export default async function IndexPage() {
                   style={{objectFit: "cover"}}
                 />
               )}
-              <h2 className="text-xl text-center">{painting?.title}</h2>
+              <h2 className="my-1 text-xl text-center">{painting?.title}</h2>
             </Link>
           </li>
         ))}
       </ul>
       <div>
-        <p className="text-center flex items-center justify-center">Created in 2024 with <HeartFilledIcon className="text-red-300 hover:text-red-500 text-2xl" /> by Minae Lee</p>
+        <p className="text-center flex items-center justify-center">Created with <HeartFilledIcon className="text-red-300 hover:text-red-500 text-2xl" /> by Minae Lee</p>
         <p className="text-center">
           Thanks to <a className="hover:text-red-500" href="https://www.sanity.io/">Sanity.io</a> & <a className="hover:text-red-500" href="https://nextjs.org/">Next.js</a></p>
       </div>
