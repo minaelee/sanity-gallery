@@ -51,8 +51,8 @@ export default async function PaintingPage({
 
   return (
     <main className="container mx-auto grid gap-12 p-12">
-      <div className="mb-4">
-        <Link href="/">← Back to the Gallery</Link>
+      <div className="mb-4 text-xl">
+        <Link href="/">← Return to the Gallery</Link>
       </div>
       <div className="grid items-top gap-12 sm:grid-cols-2">
         <Image
@@ -71,8 +71,8 @@ export default async function PaintingPage({
             ) : null}
             {year ? (
               <dl>
-                <dd className="font-semibold">Year</dd>
-                <dt>{year}</dt>
+                <dd className="year text-2xl">Year</dd>
+                <dt className="text-2xl">{year}</dt>
               </dl>
             ) : null}
           </div>
