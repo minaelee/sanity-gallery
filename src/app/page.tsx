@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
-import { client, sanityFetch } from "@/sanity/client";
+import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/fetch";
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -20,7 +21,11 @@ const urlFor = (source: SanityImageSource) =>
     : null;
 
 export default async function IndexPage() {
-  const paintings = await sanityFetch<SanityDocument[]>({query: PAINTINGS_QUERY});
+  const paintings = await sanityFetch<SanityDocument[]>({
+    query: PAINTINGS_QUERY,
+    // perspective: "published",
+    // stega: false,
+  });
   console.log('Paintings: ', paintings);
 
   return (
@@ -56,7 +61,7 @@ export default async function IndexPage() {
       <div>
         <p className="text-center flex items-center justify-center">Created with <HeartFilledIcon className="text-red-300 hover:text-red-500 text-2xl" /> by Minae Lee</p>
         <p className="text-center">
-          Thanks to <a className="hover:text-red-500" href="https://www.sanity.io/">Sanity.io</a> & <a className="hover:text-red-500" href="https://nextjs.org/">Next.js</a></p>
+          Thanks to <a className="hover:text-red-500" href="https://www.sanity.io/">Sanity</a> & <a className="hover:text-red-500" href="https://nextjs.org/">Next.js</a></p>
       </div>
     </main>
   );

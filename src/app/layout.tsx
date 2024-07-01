@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue, EB_Garamond } from "next/font/google";
 import "./globals.css";
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +30,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ebGaramond.className} ${bebasNeue.variable}`}>
-        {children}
+        {draftMode().isEnabled && (
+          <div>
+            <a className="p-4 bg-blue-300 block" href="/api/disable-draft">
+              Disable preview mode
+            </a>
+          </div>
+        )}
+        <main>
+          {children}
+        </main>
+        {draftMode().isEnabled && <VisualEditing />}
       </body>
     </html>
   );
