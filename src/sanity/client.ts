@@ -8,7 +8,7 @@ export const client = createClient({
   perspective: "published",
   stega: {
     enabled: false,
-    studioUrl: "/",
+    studioUrl: "http://localhost:3333/",
   }
 });
 

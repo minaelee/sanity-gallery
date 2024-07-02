@@ -11,20 +11,19 @@ const PAINTINGS_QUERY = `*[_type == "painting"]{
   _id,
   title,
   slug,
+  "image": image.asset->,
   "thumbnailUrl": thumbnail.asset->url
 }|order(year)`;
 
-const { projectId, dataset } = client.config();
+const builder = imageUrlBuilder(client);
 const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
+  builder.image(source);
 
 export default async function IndexPage() {
   const paintings = await sanityFetch<SanityDocument[]>({
     query: PAINTINGS_QUERY,
-    // perspective: "published",
-    // stega: false,
+    perspective: "published",
+    stega: false,
   });
   console.log('Paintings: ', paintings);
 
@@ -39,21 +38,29 @@ export default async function IndexPage() {
           <li
             className="bg-white p-4 rounded-lg flex flex-col items-center"
             key={painting._id}
+            style={{backgroundColor: painting.image.metadata.palette.darkVibrant.background}}
           >
             <Link
               className="flex flex-col items-center"
               href={`/paintings/${painting.slug.current}`}
             >
-              {painting.thumbnailUrl && (
-                <Image
-                  src={painting.thumbnailUrl}
-                  alt={painting.title || "Untitled painting"}
-                  width={400}
-                  height={400} 
-                  style={{objectFit: "cover"}}
-                />
+              {urlFor(painting.image) && (
+                 <Image
+                   src={urlFor(painting.image)
+                    .size(400, 400)
+                    .url() 
+                      || "https://via.placeholder.com/550x310"} 
+                   alt={painting.title || "Untitled painting"}
+                   width={400}
+                   height={400} 
+                 />
               )}
-              <h2 className="my-1 text-xl text-center">{painting?.title}</h2>
+              <h2 
+                className="my-1 text-xl text-center"
+                style={{color: painting.image.metadata.palette.darkVibrant.foreground}}
+              >
+                {painting?.title}
+              </h2>
             </Link>
           </li>
         ))}

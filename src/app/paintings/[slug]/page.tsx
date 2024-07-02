@@ -13,9 +13,9 @@ const PAINTING_QUERY = `*[
 ][0]{
   title,
   slug,
-  image,
   year,
   description,
+  "image": image.asset->
 }`;
 
 const { projectId, dataset } = client.config();
