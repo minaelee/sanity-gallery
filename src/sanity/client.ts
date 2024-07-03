@@ -12,6 +12,7 @@ export const client = createClient({
   }
 });
 
+/* Moved to ./fetch.ts */
 // export async function sanityFetch<QueryResponse>({
 //   query,
 //   params = {},

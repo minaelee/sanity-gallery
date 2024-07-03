@@ -11,8 +11,7 @@ const PAINTINGS_QUERY = `*[_type == "painting"]{
   _id,
   title,
   slug,
-  "image": image.asset->,
-  "thumbnailUrl": thumbnail.asset->url
+  "image": image.asset->
 }|order(year)`;
 
 const builder = imageUrlBuilder(client);
@@ -49,10 +48,10 @@ export default async function IndexPage() {
                    src={urlFor(painting.image)
                     .size(400, 400)
                     .url() 
-                      || "https://via.placeholder.com/550x310"} 
+                      || "https://via.placeholder.com/400x400"} 
                    alt={painting.title || "Untitled painting"}
                    width={400}
-                   height={400} 
+                   height={400}
                  />
               )}
               <h2 

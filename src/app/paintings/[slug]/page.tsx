@@ -60,8 +60,10 @@ export default async function PaintingPage({
           src={paintingImageUrl || "https://via.placeholder.com/550x310"}
           alt={title || "Painting"}
           className="mx-auto overflow-hidden rounded-xl object-cover object-center sm:w-full"
-          height="800"
-          width="800"
+          width={0} // these 4 lines are hoops to jump through to make NextJS use actual image size
+          height={0}
+          sizes="100vw"
+          style={{ width: '100%', height: 'auto' }}
         />
         <div className="flex flex-col justify-center space-y-4">
           <div className="space-y-4">

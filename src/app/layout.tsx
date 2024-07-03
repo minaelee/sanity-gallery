@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue, EB_Garamond } from "next/font/google";
+import { Bebas_Neue, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -14,7 +12,7 @@ const ebGaramond = EB_Garamond({
 const bebasNeue = Bebas_Neue({ 
   subsets: ["latin"], 
   weight: "400",
-  variable: '--font-bebas-neue', // Add this line
+  variable: '--font-bebas-neue',
 });
 
 export const metadata: Metadata = {
